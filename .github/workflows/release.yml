@@ -23,6 +23,11 @@ jobs:
         node-version: [14.x]
 
     steps:
+    - uses: actions/checkout@v2
+    - name: Running CI using Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
     - uses: jesusvasquez333/verify-pr-label-action@v1.4.0
       with:
         github-token: '${{ secrets.GITHUB_TOKEN }}'
