@@ -37,3 +37,9 @@ jobs:
           pull-request-number: '${{ github.event.pull_request.number }}'
           # Should the action post reviews on PRs
           disable-reviews: true
+      - name: Get PR labels
+        id: pr-labels
+      - uses: joerick/pr-labels-action@v1.0.6
+      - run: |
+          echo 'si tiene el label minor'
+        if: contains(steps.pr-labels.outputs.labels, 'minor')
