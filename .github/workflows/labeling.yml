@@ -23,8 +23,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
       - name: Verify Pull Request Labels
         uses: jesusvasquez333/verify-pr-label-action@v1.4.0
         with:
