@@ -8,7 +8,7 @@ on:
 
 jobs:
   bump-package-version:
-    - name: Bumping package version
+    name: Bumping package version
     # Only run if the PR closed by merging
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
