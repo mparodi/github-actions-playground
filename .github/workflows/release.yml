@@ -5,13 +5,16 @@
 name: Release
 
 on:
-  pull_request:
+  pull_request_target:
    types: [opened, labeled, unlabeled, synchronize]
    branches: [ main ]
+  #pull_request:
+  # types: [opened, labeled, unlabeled, synchronize]
+  # branches: [ main ]
 
 jobs:
   check_label:
-    name: Check pr label
+    name: Check pr label 2
 
     runs-on: ubuntu-latest
 
@@ -20,7 +23,10 @@ jobs:
         node-version: [14.x]
 
     steps:
-    - uses: NathanielHill/check-pr-label-action@v4.0.0
+    - uses: jesusvasquez333/verify-pr-label-action@v1.4.0
       with:
         github-token: '${{ secrets.GITHUB_TOKEN }}'
         valid-labels: 'minor, major, patch'
+        invalid-labels: 'help wanted, invalid'
+        pull-request-number: '${{ github.event.pull_request.number }}'
+        disable-reviews: true #this is set to true in order to skip a review approve
