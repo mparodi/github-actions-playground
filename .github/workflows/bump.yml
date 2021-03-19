@@ -36,8 +36,6 @@ jobs:
     needs: ci
     name: Publish new version
     runs-on: ubuntu-latest
-    # Only run if the PR closed by merging
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
