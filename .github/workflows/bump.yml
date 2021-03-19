@@ -22,3 +22,28 @@ jobs:
         with:
           branch: main
           message: 'Bump package version'
+  ci:
+    needs: bump-package-version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm test
+  publish-new-version:
+    needs: ci
+    name: Publish new version
+    runs-on: ubuntu-latest
+    # Only run if the PR closed by merging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
