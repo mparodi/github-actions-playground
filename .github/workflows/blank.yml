@@ -43,6 +43,6 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
         
       - name: test previous action
-      - run: |
+        run: |
           echo 'si tiene el label minor'
         if: contains(steps.pr-labels.outputs.labels, 'minor')
